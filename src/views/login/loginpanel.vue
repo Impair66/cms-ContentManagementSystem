@@ -10,7 +10,7 @@
               <span>账号登录</span>
             </span>
           </template>
-          <login-account/>
+          <login-account />
         </el-tab-pane>
         <el-tab-pane>
           <template #label>
@@ -19,36 +19,38 @@
               <span>手机登录</span>
             </span>
           </template>
-          <login-phone/>
+          <login-phone />
         </el-tab-pane>
+        <div class="login-password">
+          <el-checkbox v-model="checked1" label="记住密码" />
+          <el-link type="primary">忘记密码</el-link>
+        </div>
       </el-tabs>
     </div>
   </div>
 </template>
-<script>
-import loginAccount from './loginAccount.vue';
-import LoginPhone from './loginPhone.vue';
-export default {
-  components: { loginAccount, LoginPhone },
-  data() {
-    return {};
-  },
-  created() {},
-  computed: {},
-  methods: {},
-};
+<script setup>
+import { reactive, ref } from "vue";
+import loginAccount from "./loginAccount.vue";
+import LoginPhone from "./loginPhone.vue";
+const checked1 = ref("");
 </script>
 <style lang="scss" scoped>
 .bgc-img {
   width: 100%;
   height: 100%;
 }
-.login-panel{
-    position: absolute;
-    top: 50%;
-    left: 45%;
-    width: 320px;
-    height: 400px;
-    // border-radius: 8px;
+.login-panel {
+  position: absolute;
+  top: 50%;
+  left: 45%;
+  width: 320px;
+  height: 400px;
+  // border-radius: 8px;
+}
+.login-password {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
 }
 </style>

@@ -1,14 +1,14 @@
 <template>
   <div class="login-account">
     <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules">
-      <el-form-item label="账号" prop="account">
+      <el-form-item label="账号" prop="account" required>
         <el-input
           v-model="ruleForm.account"
           type="text"
           autocomplete="off"
         />
       </el-form-item>
-      <el-form-item label="密码" prop="password">
+      <el-form-item label="密码" prop="password" required>
         <el-input
           v-model="ruleForm.password"
           type="password"
@@ -26,7 +26,7 @@ const ruleFormRef = ref<FormInstance>();
 
 const validatePass = (rule: any, value: any, callback: any) => {
   if (value === "") {
-    callback(new Error("Please input the password"));
+    callback(new Error("Please input the account"));
   } else {
     if (ruleForm.password !== "") {
       if (!ruleFormRef.value) return;
