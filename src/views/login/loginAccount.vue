@@ -2,11 +2,7 @@
   <div class="login-account">
     <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules">
       <el-form-item label="账号" prop="account" required>
-        <el-input
-          v-model="ruleForm.account"
-          type="text"
-          autocomplete="off"
-        />
+        <el-input v-model="ruleForm.account" type="text" autocomplete="off" />
       </el-form-item>
       <el-form-item label="密码" prop="password" required>
         <el-input
@@ -15,12 +11,26 @@
           autocomplete="off"
         />
       </el-form-item>
+      <el-form-item>
+        <el-button
+          type="primary"
+          style="width: 100%"
+          color="var(--baseFontColor)"
+          @click="submitForm(ruleFormRef)"
+        >
+          登录
+        </el-button>
+      </el-form-item>
     </el-form>
   </div>
 </template>
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
+import { setToken } from "@/utils/auth";
+import { useUserStore } from "@/store/modules/user";
+import { useRouteStore } from "@/store/modules/route";
+const userStore = useUserStore();
 
 const ruleFormRef = ref<FormInstance>();
 
@@ -43,6 +53,35 @@ const validatePass2 = (rule: any, value: any, callback: any) => {
   } else {
     callback();
   }
+};
+const handleLoginRes = (data: any) => {
+  // 登录成功
+  setToken(data.tokenValue);
+  localStorage.setItem("tokenName", data.tokenName);
+  userStore.setInfo({
+    token: data.tokenValue,
+    userId: data.userId,
+    tokenName: data.tokenName,
+  });
+  // 跳转到上一页
+  useRouteStore().back();
+  ElMessage.success("登录成功");
+};
+
+const submitForm = async (formEl: FormInstance | undefined) => {
+  if (!formEl) return;
+  await formEl.validate((valid, fields) => {
+    if (valid) {
+      loginByEmail(ruleForm.value).then((res) => {
+        const { code, success, data } = res.data;
+        if (success) {
+          handleLoginRes(data);
+        } else {
+          validCodeImg();
+        }
+      });
+    }
+  });
 };
 
 const ruleForm = reactive({

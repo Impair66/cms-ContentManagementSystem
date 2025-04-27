@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <img src="../../assets//login//background.jpg" alt="" class="bgc-img" />
+  <div
+    class="login-container"
+    style="background-image: url('src/assets/images/login/background.jpg')"
+  >
     <div class="login-panel">
       <el-tabs type="border-card" class="demo-tabs" stretch>
         <el-tab-pane>
@@ -36,21 +38,28 @@ import LoginPhone from "./loginPhone.vue";
 const checked1 = ref("");
 </script>
 <style lang="scss" scoped>
-.bgc-img {
+.login-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   width: 100%;
   height: 100%;
-}
-.login-panel {
-  position: absolute;
-  top: 50%;
-  left: 45%;
-  width: 320px;
-  height: 400px;
-  // border-radius: 8px;
-}
-.login-password {
-  display: flex;
-  justify-content: space-between;
-  padding: 0px 10px;
+  .login-panel {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    width: 320px;
+    height: 400px;
+    // border-radius: 8px;
+  }
+  .login-password {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+  }
 }
 </style>

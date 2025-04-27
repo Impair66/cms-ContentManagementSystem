@@ -1,22 +1,17 @@
-import { createStore } from 'vuex'
+import { createStore } from "vuex";
 interface IRootState {
-  name:String,
-  age:Number
+  name: String;
+  age: Number;
 }
 
 export default createStore<IRootState>({
-  state()  { 
+  state() {
     return {
-      name:'coderwhy',
-      age:18
-    }
+      name: "coderwhy",
+      age: 18,
+    };
   },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  }
-})
-
-    
+  mutations: {},
+  actions: {},
+  modules: {},
+});
