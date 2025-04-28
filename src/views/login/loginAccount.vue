@@ -16,7 +16,6 @@
           type="primary"
           style="width: 100%"
           color="var(--baseFontColor)"
-          @click="submitForm(ruleFormRef)"
         >
           登录
         </el-button>
@@ -27,10 +26,10 @@
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
-import { setToken } from "@/utils/auth";
-import { useUserStore } from "@/store/modules/user";
+// import { setToken } from "@/utils/auth";
+// import { useUserStore } from "@/store/modules/user";
 import { useRouteStore } from "@/store/modules/route";
-const userStore = useUserStore();
+// const userStore = useUserStore();
 
 const ruleFormRef = ref<FormInstance>();
 
@@ -54,35 +53,35 @@ const validatePass2 = (rule: any, value: any, callback: any) => {
     callback();
   }
 };
-const handleLoginRes = (data: any) => {
-  // 登录成功
-  setToken(data.tokenValue);
-  localStorage.setItem("tokenName", data.tokenName);
-  userStore.setInfo({
-    token: data.tokenValue,
-    userId: data.userId,
-    tokenName: data.tokenName,
-  });
-  // 跳转到上一页
-  useRouteStore().back();
-  ElMessage.success("登录成功");
-};
+// const handleLoginRes = (data: any) => {
+//   // 登录成功
+//   setToken(data.tokenValue);
+//   localStorage.setItem("tokenName", data.tokenName);
+//   userStore.setInfo({
+//     token: data.tokenValue,
+//     userId: data.userId,
+//     tokenName: data.tokenName,
+//   });
+//   // 跳转到上一页
+//   useRouteStore().back();
+//   ElMessage.success("登录成功");
+// };
 
-const submitForm = async (formEl: FormInstance | undefined) => {
-  if (!formEl) return;
-  await formEl.validate((valid, fields) => {
-    if (valid) {
-      loginByEmail(ruleForm.value).then((res) => {
-        const { code, success, data } = res.data;
-        if (success) {
-          handleLoginRes(data);
-        } else {
-          validCodeImg();
-        }
-      });
-    }
-  });
-};
+// const submitForm = async (formEl: FormInstance | undefined) => {
+//   if (!formEl) return;
+//   await formEl.validate((valid, fields) => {
+//     if (valid) {
+//       loginByEmail(ruleForm.value).then((res) => {
+//         const { code, success, data } = res.data;
+//         if (success) {
+//           handleLoginRes(data);
+//         } else {
+//           validCodeImg();
+//         }
+//       });
+//     }
+//   });
+// };
 
 const ruleForm = reactive({
   account: "",

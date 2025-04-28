@@ -49,12 +49,7 @@ const checked1 = ref("");
   width: 100%;
   height: 100%;
   .login-panel {
-    position: absolute;
-    top: 50%;
-    left: 45%;
-    width: 320px;
-    height: 400px;
-    // border-radius: 8px;
+    border-radius: 20px;
   }
   .login-password {
     display: flex;
