@@ -26,9 +26,10 @@
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
+import router from "@/router";
 // import { setToken } from "@/utils/auth";
 // import { useUserStore } from "@/store/modules/user";
-import { useRouteStore } from "@/store/modules/route";
+// import { useRouteStore } from "@/store/modules/route";
 // const userStore = useUserStore();
 
 const ruleFormRef = ref<FormInstance>();
@@ -50,6 +51,7 @@ const validatePass2 = (rule: any, value: any, callback: any) => {
   } else if (value !== ruleForm.account) {
     callback(new Error("Two inputs don't match!"));
   } else {
+    router.push("/messageCenter");
     callback();
   }
 };

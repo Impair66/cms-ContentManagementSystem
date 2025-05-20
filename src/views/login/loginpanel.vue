@@ -50,6 +50,8 @@ const checked1 = ref("");
   height: 100%;
   .login-panel {
     border-radius: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px #999;
   }
   .login-password {
     display: flex;

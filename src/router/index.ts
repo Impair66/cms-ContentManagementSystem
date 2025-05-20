@@ -18,9 +18,9 @@ const routes: RouteRecordRaw[] = [
     ],
   },
   {
-    path: "/login",
-    name: "login",
-    component: () => import("@/views/login/loginpanel.vue"),
+    path: "/messageCenter",
+    name: "messageCenter",
+    component: () => import("@/views/messageCenter"),
   },
 ];
 
